@@ -15,7 +15,8 @@ function run() {
   const s3Uri = `s3://${bucket}`;
   exec.exec(`aws s3 sync ${distFolder} ${s3Uri} --region ${butcketRegion}`);
  
-  core.notice("Hello from  my custome Javascript action!");
+  const websiteUrl = `http://${bucket}.s3-website.${butcketRegion}.amazonaws.com`;
+  core.setOutput("website-url", websiteUrl); //::set-output name=website-url::${websiteUrl}
 }
 
 run();
